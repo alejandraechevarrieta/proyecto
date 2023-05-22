@@ -45,104 +45,60 @@
     <div id="resultado-clima"></div>
 
     <script>
+
         function consultarClima() {
             const ciudad = document.getElementById('ciudad').value;
-            const apiKey = 'af5128b58a59474d52d5659588188a42';
+            const url = "/Clima/ConsultarClima";
+            const data = { Ciudad: ciudad };
 
-            //const url = 'http://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey;
-            const url = "http://api.openweathermap.org/data/2.5/weather?q=Argentina&appid=af5128b58a59474d52d5659588188a42";
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Procesar los datos de la respuesta
-                    const temperatura = data.main.temp;
-                    const descripcion = data.weather[0].description;
-
-                    // Mostrar el resultado en la página
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (response) {
+                    console.log(response);
+                    const temperatura = response.temperatura;
                     const resultadoClima = document.getElementById('resultado-clima');
-                    resultadoClima.innerHTML = 'Temperatura: ${temperatura}°C<br>Descripción: ${descripcion}';
+                    resultadoClima.innerHTML = `Temperatura: ${temperatura}°C`;
                     alert('correcto');
-                })
-                .catch(error => {
-                    console.error('Error al obtener los datos del clima', error);
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    console.log(status);
+                    console.log(error);
                     alert('incorrecto');
-                });
+                }
+            });
         }
 
-            //function consultarClima() {
-            //    const ciudad = document.getElementById('ciudad').value;
-            //    const apiKey = 'af5128b58a59474d52d5659588188a42';
-            //    const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`;
+       
+        //function consultarClima() {
+        //    const ciudad = document.getElementById('ciudad').value;
+        //    const apiKey = 'af5128b58a59474d52d5659588188a42';
 
-            //    const request = new XMLHttpRequest();
-            //    request.open('GET', url, true);
+        //    //const url = 'http://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey;
+        //    const url = "http://api.openweathermap.org/data/2.5/weather?q=Argentina&appid=af5128b58a59474d52d5659588188a42";
+        //    fetch(url)
+        //        .then(response => response.json())
+        //        .then(data => {
+        //            // Procesar los datos de la respuesta
+        //            const temperatura = data.main.temp;
+        //            const descripcion = data.weather[0].description;
 
-            //    // Establecer tiempo límite en milisegundos (ejemplo: 10 segundos)
-            //    const tiempoLimite = 50000;
+        //            // Mostrar el resultado en la página
+        //            const resultadoClima = document.getElementById('resultado-clima');
+        //            resultadoClima.innerHTML = 'Temperatura: ${temperatura}°C<br>Descripción: ${descripcion}';
+        //            alert('correcto');
+        //        })
+        //        .catch(error => {
+        //            console.error('Error al obtener los datos del clima', error);
+        //            alert('incorrecto');
+        //        });
+        //}
+      
 
-            //    // Establecer una función para cancelar la solicitud si se excede el tiempo límite
-            //    const cancelarSolicitud = function () {
-            //        request.abort();
-            //        console.error('Tiempo de respuesta excedido');
-            //        alert('La solicitud ha excedido el tiempo límite');
-            //    };
-
-            //    // Establecer el tiempo límite utilizando setTimeout
-            //    const tiempoLimiteID = setTimeout(cancelarSolicitud, tiempoLimite);
-
-            //    request.onload = function () {
-            //        // Limpiar el tiempo límite si la respuesta se recibe antes del tiempo límite
-            //        clearTimeout(tiempoLimiteID);
-
-            //        if (request.status >= 200 && request.status < 400) {
-            //            const data = JSON.parse(request.responseText);
-            //            const temperatura = data.main.temp;
-            //            const descripcion = data.weather[0].description;
-
-            //            const resultadoClima = document.getElementById('resultado-clima');
-            //            resultadoClima.innerHTML = `Temperatura: ${temperatura}°C<br>Descripción: ${descripcion}`;
-            //            alert('Correcto');
-            //        } else {
-            //            console.error('Error en la solicitud. Código de respuesta:', request.status);
-            //            alert('Ha ocurrido un error al obtener los datos del clima');
-            //        }
-            //    };
-
-            //    request.onerror = function () {
-            //        clearTimeout(tiempoLimiteID);
-            //        console.error('Error al realizar la solicitud');
-            //        alert('Ha ocurrido un error al obtener los datos del clima');
-            //    };
-
-            //    request.send();
-            //}
-
-
-
-
-            //function consultarClima() {
-            //    const ciudad = document.getElementById('ciudad').value;
-            //    const apiKey = 'af5128b58a59474d52d5659588188a42';
-
-            //    // Construir la URL con la ciudad y la clave de API
-            //    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`;
-
-            //    fetch(url)
-            //        .then(response => response.json())
-            //        .then(data => {
-            //            // Procesar los datos de la respuesta
-            //            const temperatura = data.main.temp;
-            //            const descripcion = data.weather[0].description;
-
-            //            // Mostrar el resultado en la página
-            //            const resultadoClima = document.getElementById('resultado-clima');
-            //            resultadoClima.innerHTML = `Temperatura: ${temperatura}°C<br>Descripción: ${descripcion}`;
-            //        })
-            //        .catch(error => {
-            //            console.error('Error al obtener los datos del clima', error);
-            //            alert('Error al obtener los datos del clima. Por favor, inténtalo de nuevo más tarde.');
-            //        });
-            //}
+           
 
     </script>
 </body>
