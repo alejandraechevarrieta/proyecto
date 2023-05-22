@@ -1,0 +1,14 @@
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\obj\Debug\Prueba.Servicio.csproj.AssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\obj\Debug\Prueba.Servicio.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\Prueba.Servicio.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\Prueba.Servicio.pdb
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\EntityFramework.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\Prueba.Model.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\Prueba.Model.pdb
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\Prueba.Model.dll.config
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\EntityFramework.xml
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\obj\Debug\Prueba.Servicio.csproj.CopyComplete
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\obj\Debug\Prueba.Servicio.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Servicio\obj\Debug\Prueba.Servicio.pdb

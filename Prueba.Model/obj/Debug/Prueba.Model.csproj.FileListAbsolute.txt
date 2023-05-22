@@ -1,0 +1,12 @@
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\EntityFramework.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\EntityFramework.xml
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\obj\Debug\Prueba.Model.csproj.AssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\obj\Debug\Prueba.Model.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\obj\Debug\Prueba.Model.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\obj\Debug\Prueba.Model.pdb
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\Prueba.Model.dll.config
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\Prueba.Model.dll
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\bin\Debug\Prueba.Model.pdb
+C:\Users\marti\OneDrive\Escritorio\Proyecto\Prueba.Model\obj\Debug\Prueba.Model.csproj.CopyComplete

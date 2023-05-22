@@ -1,0 +1,541 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using System.Web.Optimization
+@using System.Web.Mvc.Html;
+<style>
+
+    .modal {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+
+</head>
+
+<body>
+    <div style="margin-left: 4%; margin-block: 0.5%">
+        <button id="nuevoCliente" class="btn btn-info">Nuevo Cliente <i class="fa fa-user"></i></button>
+    </div>
+    <div class="row" style="margin: 30px " id="rowFiltro">
+        <div class="form-group2 col-md-2" id="filtroCliente">
+            <label>Cliente:</label>
+            <div></div>
+            <div style="font-weight: normal !important;">
+                <select class="form-control" id="selectCliente"></select>
+            </div>
+        </div>
+        <div class="form-group2 col-md-1" style="padding-top: 2%;">
+            <button id="btnFiltrar" type="button" class="btn btn-primary" style="width: 90px; cursor: pointer;">
+                Buscar
+            </button>
+        </div>
+        <div class="form-group2 col-md-1" style="padding-top: 2%; padding-right:9%; margin-left:5%">
+            <button id="btnLimpiar" type="button" class="btn btn-warning" style="width: 120px; cursor: pointer;">
+                Limpiar Filtros
+            </button>
+        </div>
+    </div>
+
+    @*GRILLA*@
+    <div class="container-responsive" style="margin-left: 2.5%; margin-block: 0.5%; margin-right: 2.5%" id="tablaUsuarios">
+        <div class="contenedor__tabla hov">
+            <table id="table_id" class="table table-hover" style="width:100%">
+                <thead class="cabecera__tabla">
+                    <tr>
+                        <th class="text-center">Nombres</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="text-center">Fecha Nacimiento</th>
+                        <th class="text-center">Cuit</th>
+                        <th class="text-center">Telefono</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @*MODAL NUEVO*@
+    <div class="modal" id="modal-nuevo" style="display: none!important; margin-top: 0%;">
+        <div class="modal-dialog" style="max-width: 900px!important;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Nombres <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requeridoN" placeholder="nombres" id="nombresN" />
+                        </div>
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Apellidos<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requeridoN" placeholder="apellidos" id="apellidosN" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-1" style="height: 10%;">
+                            <label>Fecha Nacimiento</label>
+                            <input type="date" class="form-control pull-left datapicker" id="fechaNacimientoN" />
+                        </div>
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Cuit<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requeridoN" placeholder="cuit" id="cuitN" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Domicilio</label>
+                            <input type="text" class="form-control" placeholder="domicilio" id="domicilioN" />
+                        </div>
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Telefono Celular<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requeridoN" placeholder="telefono" id="telefonoN" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-10">
+                            <label>mail<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requeridoN" placeholder="mail" id="mailN" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-bottom:6px">
+                    <a href="#" role="button" class="btn btn-success" id="Guardar" style="margin-left:40%;">Guardar</a>
+                    <a href="#" role="button" class="btn btn-danger" id="Cancelar" style="margin-left: 4%;">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*MODAL EDITAR*@
+    <div class="modal" id="modal-editar" style="display: none!important; margin-top: 0%;">
+        <div class="modal-dialog" style="max-width: 900px!important;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Nombres<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requerido" placeholder="nombres" id="nombresE" />
+                        </div>
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Apellidos<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requerido" placeholder="apellidos" id="apellidosE" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-1" style="height: 10%;">
+                            <label>Fecha Nacimiento</label>
+                            <input type="text" class="form-control pull-left datepicker" id="fechaNacimientoE" />
+                        </div>
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Cuit<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requerido" placeholder="cuit" id="cuitE" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Domicilio</label>
+                            <input type="text" class="form-control" placeholder="domicilio" id="domicilioE" />
+                        </div>
+                        <div class="form-group col-md-6 offset-10">
+                            <label>Telefono Celular<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requerido" placeholder="telefono" id="telefonoE" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 offset-10">
+                            <label>mail<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control requerido" placeholder="mail" id="mailE" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-bottom:6px">
+                    <a href="#" role="button" class="btn btn-success" id="EditarGuardar" style="margin-left:40%;">Guardar</a>
+                    <a href="#" role="button" class="btn btn-danger" id="EditarCancelar" style="margin-left: 4%;">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    listarClientes();
+    cargarClientes();
+
+    //var colaborador = $("#selectColaborador").val();
+    //var estado = $("#selectEstadoDoc").val();
+
+    //console.log('Cargar Listado');
+    //var url = "Api/Viaticos/ListarSolicitudes";
+    //url = url + "?colaborador=" + colaborador;
+
+    function listarClientes() {
+        let cliente = $('#selectCliente').val();
+       
+        let url = "/Clientes/ListarClientes";
+        url = url + "?cliente=" + cliente;
+        cargarTabla(url);
+    }
+
+    function cargarTabla(url) {
+        //moment.locale('es');
+        var table = $("#table_id").DataTable({
+            "processing": true,
+            "serverSide": true,
+            "stateSave": true,
+            "bDestroy": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            "scrollY": "500px",
+            "scrollCollapse": true,
+            "ajax": {
+                "url": url,
+                "type": "POST",
+                "datatype": "json"
+            },
+            "pageLength": 25,
+            "filter": true,
+            "stateSave": true,
+            "responsivePriority": 1,
+            "data": null,
+            "columnDefs": [
+                { "width": "20%", "targets": 0 },
+                { "width": "20%", "targets": 1 },
+                { "width": "15%", "targets": 2 },
+                { "width": "15%", "targets": 3 },
+                { "width": "15%", "targets": 4 },
+                { "width": "8%", "targets": 5 },
+            ],
+            "columns": [
+                {
+                    "data": "nombres", "name": "Nombres", "autoWidth": false,
+                    render: function (data, type, row, meta) {
+                        return '<div style="text-align: left;">' + data + '</div>'
+                    }
+                },
+                {
+                    "data": "apellidos", "name": "Apellidos", "autoWidth": false,
+                    render: function (data, type, row, meta) {
+                        return '<div style="text-align: left;">' + data + '</div>'
+                    }
+                },
+                {
+                    "data": "fechaNacimiento", "name": "Fecha Nacimiento", "autoWidth": false,
+                    render: function (data, type, row, meta) {
+                        return '<div style="text-align: center;">' + moment(data).format('DD/MM/YYYY') + '</div>'
+                    }
+                },
+                {
+                    "data": "cuit", "name": "Cuit", "autoWidth": false,
+                    render: function (data, type, row, meta) {
+                        return '<div style="text-align: center;">' + data + '</div>'
+                    }
+                },
+                {
+                    "data": "telefono", "name": "Telefono", "autoWidth": false,
+                    render: function (data, type, row, meta) {
+                        return '<div style="text-align: center;">' + data + '</div>'
+                    }
+                },
+                {
+                    "data": "ID", "name": "ID", "autoWidth": false,
+                    render: function (data, type, row, meta) {
+                        return '<div style="text-align: center;">'
+
+                            + "<a href=# class='btn btn-primary' style='color:white; margin-right: 0px;' title='Editar' id='btnEditar' onclick=\"abrirModalEditar(" + data + ")\"><i class='fa fa-pencil-alt'></i></a>"
+                        '</div>'
+                    }
+                },
+            ],
+
+            "ordering": true,
+            "paging": true,
+
+        });
+    };
+    let idCliente = 0;
+
+    function cargarClientes() {
+        let selectCliente = $('#selectCliente');
+        selectCliente.empty();
+        selectCliente.append($('<option/>', { value: '', text: 'Seleccionar' }).hide());
+        let url = "/Clientes/ListarClientesFiltro";
+        $.getJSON(url)
+            .done(function (data) {
+                console.log(data);
+                $.each(data, function (index, result) {
+                    selectCliente.append($('<option/>', {
+                        value: result.ID,
+                        text: result.nombresApellidos
+                    }));
+                });
+            })
+            .fail(function (xhr, status, error) {
+                console.log(xhr.responseText);
+                console.log(status);
+                console.log(error);
+            });
+    }
+
+    $('#btnFiltrar').click(function () {       
+        listarClientes();
+    });
+    $('#btnLimpiar').click(function () {
+        $('#selectCliente').val('');
+        listarClientes();
+    });
+   
+
+
+    //botones
+    $('#nuevoCliente').click(function () {
+        $('#modal-nuevo').show();
+    });
+    $('#Guardar').click(function () {
+        validarDatosFaltantes();
+    });
+    $('#Cancelar').click(function () {
+        $('#modal-nuevo').hide();
+    });
+    $('#EditarCancelar').click(function () {
+        $('#modal-editar').hide();
+        idDocumento = 0;
+        vaciarModalEdicion();
+    });
+    $('#EditarGuardar').click(function () {
+        validarDatosFaltantesEdicion();
+    });
+    function loadFecha(fecha, control) {
+        if (fecha != null) {
+            var timestamp = fecha.replace("/Date(", "").replace(")/", "");
+            var date = new Date(parseInt(timestamp));
+            var day = ("0" + date.getDate()).slice(-2);
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var year = date.getFullYear();
+            var formattedDate = day + "/" + month + "/" + year;
+            control.val(formattedDate);
+        }
+    }
+
+
+
+    //fechas
+    //function loadFecha(fecha, control) {
+    //    if (fecha != null) {
+    //        var now = new Date(fecha);
+    //        var day = ("0" + now.getDate()).slice(-2);
+    //        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    //        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+    //        control.val(today);
+    //    }
+    //}
+    //Nuevo Cliente
+
+    //alerta y pone focus con color de los datos faltantes
+    function validarDatosFaltantes() {
+        var elementos = $('.requeridoN');
+        var validado = true;
+        elementos.each(function (index, element) {
+            if (element.value == '' || element.value == undefined) {
+                validado = false;
+                element.style.backgroundColor = "#f79090";
+            }
+        });
+        if (!validado) {
+            alert("Falta completar datos obligatorios");
+        } else {
+            guardarNuevo();
+        }
+    }
+    //borra el color de los datos faltantes
+    $('.requerido, .requeridoN').on('change blur', validar);
+
+    function validar() {
+        var elementos = $('.requerido');
+        var elementosN = $('.requeridoN');
+
+        var validado = true;
+        elementos.each(function (index, element) {
+            if (element.value == '' || element.value == undefined) {
+                validado = false;
+            } else {
+                element.style.backgroundColor = "";
+            }
+        });
+        elementosN.each(function (index, element) {
+            if (element.value == '' || element.value == undefined) {
+                validado = false;
+            } else {
+                element.style.backgroundColor = "";
+            }
+        });
+    }
+    function guardarNuevo() {
+        var detalleCliente = {
+            nombres: $("#nombresN").val(),
+            apellidos: $("#apellidosN").val(),
+            fechaNacimiento: $("#fechaNacimientoN").val(),
+            cuit: $("#cuitN").val(),
+            domicilio: $("#domicilioN").val(),
+            telefono: $("#telefonoN").val(),
+            mail: $("#mailN").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Clientes/GuardarNuevo",
+            data: detalleCliente,
+            dataType: "json",
+            success: function (response) {
+                console.log("mensaje" + response);
+                vaciarModalGuardar();
+                $('#modal-nuevo').hide();
+                window.location.href = '/Home/Clientes';
+            },
+            error: function (jqxhr) {
+                alert('Hubo un error al guardar');
+                console.log(jqxhr);
+            }
+        });
+    }
+
+    //Editar Cliente
+    function abrirModalEditar(id) {
+        idCliente = id;
+        abrirCliente(idCliente);
+        $('#modal-editar').show();
+    }
+    function abrirCliente(idCliente) {
+        let urlBuscar = "/Clientes/AbrirCliente?&idCliente=" + idCliente;
+      
+        $.getJSON(urlBuscar)
+            .done(function (data) {
+                $("#nombresE").val(data.nombres);
+                $("#apellidosE").val(data.apellidos);
+                //var fechaNacimiento = data.fechaNacimiento instanceof Date ? data.fechaNacimiento.toISOString().slice(0, 10) : data.fechaNacimiento;
+                loadFecha(data.fechaNacimiento, $('#fechaNacimientoE'));
+                $("#cuitE").val(data.cuit);
+                $("#domicilioE").val(data.domicilio);
+                $("#telefonoE").val(data.telefono);
+                $("#mailE").val(data.mail);
+                //$("#fechaNacimientoE").val(data.fechaNacimiento);
+            });
+    }
+    //function abrirCliente(idCliente) {
+    //    let urlBuscar = "/Clientes/AbrirCliente?&idCliente=" + idCliente;
+    //    $.ajax({
+    //        url: urlBuscar,
+    //        dataType: 'json',
+    //        success: function (data) {
+    //            $("#nombresE").val(data.nombres);
+    //            $("#apellidosE").val(data.apellidos);
+    //            loadFecha(data.fechaNacimiento, $('#fechaNacimientoE'));
+    //            $("#cuitE").val(data.cuit);
+    //            $("#domicilioE").val(data.domicilio);
+    //            $("#telefonoE").val(data.telefono);
+    //            $("#mailE").val(data.mail);
+    //        },
+    //        error: function (xhr, status, error) {
+    //            console.log(xhr.responseText);
+    //            console.log(status);
+    //            console.log(error);
+    //        }
+    //    });
+    //}
+
+    //alerta y pone focus con color de los datos faltantes
+    function validarDatosFaltantesEdicion() {
+        var elementos = $('.requerido');
+        var validado = true;
+        elementos.each(function (index, element) {
+            if (element.value == '' || element.value == undefined) {
+                validado = false;
+                element.style.backgroundColor = "#f79090";
+            }
+        });
+        if (!validado) {
+            alert("Falta completar datos obligatorios");
+        } else {
+            guardarEdicion();
+        }
+    }
+
+    function guardarEdicion() {
+        var detalleCliente = {
+            ID: idCliente,
+            nombres: $("#nombresE").val(),
+            apellidos: $("#apellidosE").val(),
+            fechaNacimiento: $("#fechaNacimientoE").val(),
+            cuit: $("#cuitE").val(),
+            domicilio: $("#domicilioE").val(),
+            telefono: $("#telefonoE").val(),
+            mail: $("#mailE").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "/Clientes/GuardarEdicion",
+            data: detalleCliente,
+            dataType: "json",
+            success: function (response) {
+                setTimeout(function () {
+                    vaciarModalEdicion();
+                    $('#modal-editar').hide();
+                    window.location.href = '/Home/Clientes';
+                }, 1000);
+            }
+        });
+    }
+
+    //vaciar
+    function vaciarModalGuardar() {
+        $('#nombresN').val('').change();
+        $('#apellidosN').val('').change();
+        $('#fechaNacimientoN').val('').change();
+        $('#cuitN').val('').change();
+        $('#domicilioN').val('').change();
+        $('#telefonoN').val('').change();
+        $('#domicilioN').val('').change();
+        $('#mailN').val('').change();
+    }
+    function vaciarModalEdicion() {
+        $('#nombresE').val('').change();
+        $('#apellidosE').val('').change();
+        $('#fechaNacimientoE').val('').change();
+        $('#cuitE').val('').change();
+        $('#domicilioE').val('').change();
+        $('#telefonoE').val('').change();
+        $('#domicilioE').val('').change();
+        $('#mailE').val('').change();
+    }
+
+
+</script>
