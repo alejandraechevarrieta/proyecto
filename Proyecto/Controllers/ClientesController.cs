@@ -38,16 +38,7 @@ namespace Proyecto.Controllers
 
             return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = tmp });
         }
-        //[System.Web.Http.Route("/ListarClientesFiltro")]
-        //[System.Web.Http.ActionName("ListarClientesFiltro")]
-        //[System.Web.Http.HttpGet]
-        //public List<ClientesVM> ListarClientesFiltro()
-        //{
-        //    Prueba.Servicio.ServicioClientes _servicio = new Prueba.Servicio.ServicioClientes();
-        //    var tmp = _servicio.ListarClientesFiltro();
-
-        //    return tmp;
-        //}      
+   
         public JsonResult ListarClientesFiltro()
         {
             Prueba.Servicio.ServicioClientes _servicio = new Prueba.Servicio.ServicioClientes();
@@ -84,16 +75,6 @@ namespace Proyecto.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-
-        //[System.Web.Http.Route("/AbrirCliente")]
-        //[System.Web.Http.ActionName("AbrirCliente")]
-        //[System.Web.Http.HttpGet]
-        //public ClientesVM AbrirCliente(int idCliente)
-        //{
-        //    ServicioClientes _servicio = new ServicioClientes();
-        //    var tmp = _servicio.AbrirCliente(idCliente);
-        //    return tmp;
-        //}
         public int GuardarEdicion(ClientesVM cliente)
         {
             try

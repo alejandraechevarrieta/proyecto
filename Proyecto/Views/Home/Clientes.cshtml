@@ -32,15 +32,6 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
-
-
-    @* <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">*@
-
-
-
-
-
-
 </head>
 
 <body>
@@ -195,13 +186,7 @@
     listarClientes();
     cargarClientes();
 
-    //var colaborador = $("#selectColaborador").val();
-    //var estado = $("#selectEstadoDoc").val();
-
-    //console.log('Cargar Listado');
-    //var url = "Api/Viaticos/ListarSolicitudes";
-    //url = url + "?colaborador=" + colaborador;
-
+   
     function listarClientes() {
         let cliente = $('#selectCliente').val();
        
@@ -352,17 +337,6 @@
     }
 
 
-
-    //fechas
-    //function loadFecha(fecha, control) {
-    //    if (fecha != null) {
-    //        var now = new Date(fecha);
-    //        var day = ("0" + now.getDate()).slice(-2);
-    //        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    //        var today = now.getFullYear() + "-" + (month) + "-" + (day);
-    //        control.val(today);
-    //    }
-    //}
     //Nuevo Cliente
 
     //alerta y pone focus con color de los datos faltantes
@@ -445,38 +419,15 @@
         $.getJSON(urlBuscar)
             .done(function (data) {
                 $("#nombresE").val(data.nombres);
-                $("#apellidosE").val(data.apellidos);
-                //var fechaNacimiento = data.fechaNacimiento instanceof Date ? data.fechaNacimiento.toISOString().slice(0, 10) : data.fechaNacimiento;
+                $("#apellidosE").val(data.apellidos);               
                 loadFecha(data.fechaNacimiento, $('#fechaNacimientoE'));
                 $("#cuitE").val(data.cuit);
                 $("#domicilioE").val(data.domicilio);
                 $("#telefonoE").val(data.telefono);
-                $("#mailE").val(data.mail);
-                //$("#fechaNacimientoE").val(data.fechaNacimiento);
+                $("#mailE").val(data.mail);                
             });
     }
-    //function abrirCliente(idCliente) {
-    //    let urlBuscar = "/Clientes/AbrirCliente?&idCliente=" + idCliente;
-    //    $.ajax({
-    //        url: urlBuscar,
-    //        dataType: 'json',
-    //        success: function (data) {
-    //            $("#nombresE").val(data.nombres);
-    //            $("#apellidosE").val(data.apellidos);
-    //            loadFecha(data.fechaNacimiento, $('#fechaNacimientoE'));
-    //            $("#cuitE").val(data.cuit);
-    //            $("#domicilioE").val(data.domicilio);
-    //            $("#telefonoE").val(data.telefono);
-    //            $("#mailE").val(data.mail);
-    //        },
-    //        error: function (xhr, status, error) {
-    //            console.log(xhr.responseText);
-    //            console.log(status);
-    //            console.log(error);
-    //        }
-    //    });
-    //}
-
+   
     //alerta y pone focus con color de los datos faltantes
     function validarDatosFaltantesEdicion() {
         var elementos = $('.requerido');
