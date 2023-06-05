@@ -10,7 +10,22 @@
       "ProjectGuid": "81ac5ff0-0fe5-4ea7-94e5-c2b5a9666f22",
       "DisplayName": "Proyecto",
       "ColorIndex": 1
+    },
+    "5a2b4c02-6596-4b46-b0ae-4e5907136256": {
+      "ProjectGuid": "5a2b4c02-6596-4b46-b0ae-4e5907136256",
+      "DisplayName": "Prueba.Model",
+      "ColorIndex": 2
+    },
+    "ff398904-89bb-47c6-9ae1-2978e24439ad": {
+      "ProjectGuid": "ff398904-89bb-47c6-9ae1-2978e24439ad",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 4
 }
